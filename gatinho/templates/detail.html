@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+{% block body %}
+    <section class="container">
+        <h1>Detalhes do Gatinho</h1>
+        {% if gatinho %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Nome: {{gatinho.nome}}</h5>
+                <p class="card-text">Idade: {{gatinho.idade}}</p>
+                <p class="card-text">Cor: {{gatinho.cor}}</p>
+                <div class="list-group">
+                {% if donos|length > 1 %}
+                  <a href="/donos/" class="list-group-item list-group-item-action active">
+                    Donos
+                  </a>
+                {% for dono in donos%}
+                    <a href="/dono/{{dono.id}}" class="list-group-item list-group-item-action">{{dono.nome}}</a>
+                {% endfor %}
+                {% else %}
+                    <a href="/donos/" class="list-group-item list-group-item-action active">
+                    Dono
+                  </a>
+                {% for dono in donos%}
+                    <a href="/dono/{{dono.id}}" class="list-group-item list-group-item-action">{{dono.nome}}</a>
+                {% endfor %}
+                {% endif %}
+                </div>
+                <a href="../delete/{{gatinho.id}}"><button class="btn btn-danger">Deletar Gatinho</button></a>
+                <a href="../update/{{gatinho.id}}"><button class="btn btn-warning">Editar Gatinho</button></a>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+{% endblock body %}

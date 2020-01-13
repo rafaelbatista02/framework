@@ -1,0 +1,14 @@
+{% extends "index.html" %}
+{% block body %}
+    <section class="container">
+        <h1>Detalhes do Gatinho</h1>
+        {% if gatinho %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Nome: {{gatinho.nome}}</h5>
+                <p class="card-text">Gatinho deletado</p>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+{% endblock body %}
