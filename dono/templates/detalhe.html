@@ -1,0 +1,34 @@
+{% extends "index.html" %}
+{% block body %}
+    <section class="container">
+        <h1>Detalhes do Dono</h1>
+        {% if dono %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">Nome: {{dono.nome}}</h5>
+                <p class="card-text">Idade: {{dono.idade}}</p>
+                <p class="card-text">Cor: {{dono.cor}}</p>
+                <div class="list-group">
+                {% if donos|length > 1 %}
+                  <a href="/donos/" class="list-group-item list-group-item-action active">
+                    Donos
+                  </a>
+                {% for dono in donos%}
+                    <a href="/dono/{{dono.id}}" class="list-group-item list-group-item-action">{{dono.nome}}</a>
+                {% endfor %}
+                {% else %}
+                    <a href="/donos/" class="list-group-item list-group-item-action active">
+                    Dono
+                  </a>
+                {% for dono in donos%}
+                    <a href="/dono/{{dono.id}}" class="list-group-item list-group-item-action">{{dono.nome}}</a>
+                {% endfor %}
+                {% endif %}
+                </div>
+                <a href="../deleta/{{dono.id}}"><button class="btn btn-danger">Deletar Dono</button></a>
+                <a href="../updata/{{dono.id}}"><button class="btn btn-warning">Editar Dono</button></a>
+            </div>
+        </div>
+        {% endif %}
+    </section>
+{% endblock body %}
