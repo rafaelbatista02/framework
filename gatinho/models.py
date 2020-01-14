@@ -4,6 +4,7 @@ from django.db import models
 from dono.models import Dono
 
 
+
 class Gatinho(models.Model):
     nome = models.CharField(max_length=255)
     idade = models.IntegerField()
@@ -14,3 +15,5 @@ class Gatinho(models.Model):
     )
     cor = models.CharField(choices=cores, max_length=100)
     dono = models.ManyToManyField(Dono, null=True)
+
+

@@ -7,3 +7,7 @@ class GatinhoForm(forms.ModelForm):
     class Meta:
         model = Gatinho
         fields = "__all__"
+
+
+
+
