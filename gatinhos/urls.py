@@ -18,8 +18,15 @@ from django.urls import path, include
 
 from gatinho.views import home, detail, delete, update
 import dono.urls
+from gatinho.views import ContatoViewSet, PropagandaViewSet
+from rest_framework import routers
+
+router = routers.DefaultRouter()
+router.register(r'contatos', ContatoViewSet)
+router.register(r'anuncios', PropagandaViewSet)
 
 urlpatterns = [
+    path(r'',include(router.urls)),
     path('', home),
     path('dono/', include('dono.urls')),
     path('detail/<int:id>', detail),

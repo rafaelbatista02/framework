@@ -1,49 +1,29 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
 
   <nav class="navbar navbar-dark bg-dark">
+  <nav class="navbar navbar-light bg-light">
       <a class="navbar-brand" href="/">
     <img src="https://media.giphy.com/media/13CoXDiaCcCoyk/giphy.gif" width="30" height="30" class="d-inline-block align-top" alt="">
     Pets
     </a>
     <a class="btn btn-outline-success" href="/" style="color:white;border-color:white;">Cadastro de Gatinhos</a>
     <a class="btn btn-sm btn-outline-secondary" href="/dono/cadastro" style="color:white;border-color:white;">Cadastro de Donos</a>
+    <a class="btn btn-outline-success" href="/" style="color:black;border-color:black;">Cadastro de Gatinhos</a>
+    <a class="btn btn-sm btn-outline-secondary" href="/dono/cadastro" style="color:black;border-color:black;">Cadastro de Donos</a>
+    {% if user.is_authenticated %}
+    <a class="btn btn-primary" href="{% url 'logout' %}">Sair</a>
+{% else %}
+    <a class="btn btn-primary" href="{% url 'login' %}">Login</a>
+{% endif %}
   </nav>
     {% block body %}
+    {% if user.is_authenticated %}
+    <p>
+        Olá {{ user.username }} seja bem vindo, o que deseja fazer hoje? 
+        <span><a href="{% url 'logout' %}">Sair</a></span>
+    </p>
+{% endif %}
     <section class="container">
         <h1>Cadastro de Gatinhos</h1>
         <form method="POST">
-            {% csrf_token %}
-            {{form.as_p}}
-
-            <button type="submit" class="btn btn-primary"> Cadastrar Gatinho</button>
-        </form>
-    </section>
-        <section class="container">
-            {% if msg %}
-            <h3>{{msg}}</h3>
-            {% endif %}
-        {% if gatinhos %}
-        {% for gatinho in gatinhos %}
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Nome: {{gatinho.nome}}</h5>
-                <p class="card-text">Idade: {{gatinho.idade}}</p>
-                <a href="detail/{{gatinho.id}}"><button class="btn btn-primary">Detalhes do Gatinho</button></a>
-            </div>
-        </div>
-        {% endfor %}
-        {% endif %}
-    </section>
-{% endblock body %}
-</body>
-</html>

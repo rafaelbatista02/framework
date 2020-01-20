@@ -1,11 +1,12 @@
-{% extends "index.html" %}
+{% extends 'index.html' %}
+{% block title %}Faça o login{% endblock %}
 {% block body %}
-    <section class="container">
-        <h1>Area de Login</h1>
-        <form method="POST"action=".">
+    <div class="container">
+        <h1>Faça o seu login</h1>
+        <form action="." method="post">
             {% csrf_token %}
-            {{form.as_p}}
-            <button type="submit" class="btn btn-primary">Faça login</button>
+            {{ form.as_p }}
+            <input class="btn btn-primary" type="submit" value="Login">
         </form>
-    </section>
-{% endblock body %}
+    </div>
+{% endblock body%}

@@ -2,7 +2,22 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from gatinho.forms import GatinhoForm
-from gatinho.models import Gatinho
+from gatinho.models import Gatinho, Anuncio
+from rest_framework import viewsets
+from gatinho.serializers import GatinhoSerializer, AnuncioSerializer
+
+
+
+class ContatoViewSet(viewsets.ModelViewSet):
+    queryset = Gatinho.objects.all() # ele ta trazer todas as informaçoes do banco de dados
+    serializer_class = GatinhoSerializer  # 
+
+class PropagandaViewSet(viewsets.ModelViewSet):
+    queryset = Anuncio.objects.all()
+    serializer_class = AnuncioSerializer    
+
+
+
 
 
 def home(request):
